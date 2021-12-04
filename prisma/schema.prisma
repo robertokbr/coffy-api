@@ -13,16 +13,31 @@ datasource db {
 model User {
   id Int @default(autoincrement()) @id
   email String @unique
-  nome String
-
+  name String
   orders Order[]
 }
 
 model Order {
   id Int @default(autoincrement()) @id
-  item String
-  delivered Boolean @default(false)
+  userId Int
+  stateId Int
+  state OrderState @relation(fields: [stateId], references: [id])
+  customer User @relation(fields: [userId], references: [id])
+  items Item[]
+}
 
-  user User @relation(fields: [user_id], references: [id])
-  user_id Int
+model Item {
+  id Int @default(autoincrement()) @id
+  name String
+  description String
+  price Int
+  orderId Int
+  order Order @relation(fields: [orderId], references: [id])
+}
+
+model OrderState {
+  id Int @default(autoincrement()) @id
+  state String @unique
+  code Int @unique
+  order Order[]
 }
