@@ -1,0 +1,43 @@
+syntax = "proto3";
+import "shared.proto";
+
+service AuthService {
+  rpc createPassCode (Shared.Void) returns (PassCodeResponse);
+  rpc createSession (CreateSessionRequest) returns (JWTResponse);
+  rpc updateSession (UpdateSessionRequest) returns (JWTResponse);
+  rpc getSessionPayload (GetSessionPayloadRequest) returns (PayloadResponse);
+}
+
+// Requests
+
+message CreateSessionRequest {
+  string code = 1;
+  string name = 2;
+}
+
+message UpdateSessionRequest {
+  string jwt = 1;
+  string code = 2;
+}
+
+message GetSessionPayloadRequest {
+  string jwt = 1;
+}
+
+// Responses
+
+message PassCodeResponse {
+  string code = 1;
+  string createdAt = 2;
+}
+
+message JWTResponse {
+  string jwt = 1;
+  string expiration = 2;
+}
+
+message PayloadResponse {
+  string id = 1;
+  string name = 2;
+  string code = 3;
+}
