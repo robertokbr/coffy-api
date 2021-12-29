@@ -1,11 +1,12 @@
 import { IsObject, IsArray } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import OrderItems from '../entities/order-items.entity';
+import { OrderItems } from '../../../shared/prisma/entities';
+import { JsonObject } from 'src/shared/types';
 
 export class CreateOrderDto {
   @IsObject()
   @ApiProperty()
-  customer: JsonValue;
+  customer: JsonObject;
 
   @IsArray()
   @ApiProperty()
