@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderDto } from './dto/update-order.dto';
-import { Order } from './entities/order.entity';
 import { StateCode } from './enums/order-state.enum';
 import OrdersRepository from './orders.repository';
+import { Order } from '../../shared/prisma/entities';
 
 @Injectable()
 export class OrdersService {
@@ -17,18 +16,10 @@ export class OrdersService {
     });
   }
 
-  async findAll(query: Partial<Order>) {
+  async findAll(query?: Partial<Order>) {
     return this.ordersRepository.find({
       customer: query.customer,
       ...query,
     });
-  }
-
-  async findOne(id: number) {
-    return new Order();
-  }
-
-  async update(id: number, updateOrderDto: UpdateOrderDto) {
-    return new Order();
   }
 }
