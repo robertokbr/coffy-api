@@ -18,19 +18,26 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "seeds:run": "ts-node src/prisma/seeds/index.ts"
   },
   "dependencies": {
+    "@grpc/proto-loader": "^0.6.7",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^5.1.5",
+    "@types/faker": "^5.5.9",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
+    "faker": "^5.5.3",
+    "grpc": "^1.24.11",
     "prisma": "^3.5.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "swagger-ui-express": "^4.3.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
