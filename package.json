@@ -19,7 +19,9 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "seeds:run": "ts-node src/prisma/seeds/index.ts"
+    "seeds:run": "ts-node src/shared/prisma/seeds/index.ts",
+    "migrations:run": "prisma migrate dev",
+    "setup:dev": "npm run migrations:run && npm run seeds:run"
   },
   "dependencies": {
     "@grpc/proto-loader": "^0.6.7",
