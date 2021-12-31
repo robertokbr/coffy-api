@@ -9,8 +9,4 @@ export class User {
   @IsString()
   @ApiProperty()
   name: string;
-
-  @IsString()
-  @ApiProperty()
-  code: string;
 }
