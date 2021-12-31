@@ -12,21 +12,21 @@ import { ApiProperty } from '@nestjs/swagger';
 export class FindOrdersDto {
   @IsNumber()
   @IsOptional()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   id?: number;
 
   @IsObject()
   @IsOptional()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   customer?: JsonObject;
 
   @IsEnum(StateCode)
   @IsOptional()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   code?: StateCode;
 
   @IsDate()
   @IsOptional()
-  @ApiProperty()
+  @ApiProperty({ required: false })
   createdAt?: Date;
 }

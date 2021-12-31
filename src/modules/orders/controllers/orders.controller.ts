@@ -27,8 +27,8 @@ export class OrdersController {
   }
 
   @Get()
-  findAll(@Query() query: FindOrdersDto) {
-    return this.ordersService.findAll(query);
+  findAll(@Query() findOrderDto: FindOrdersDto) {
+    return this.ordersService.findAll(findOrderDto);
   }
 
   @Put()
