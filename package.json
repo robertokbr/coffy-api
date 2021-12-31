@@ -24,10 +24,12 @@
     "setup:dev": "npm run migrations:run && npm run seeds:run"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.4.5",
     "@grpc/proto-loader": "^0.6.7",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/mapped-types": "*",
+    "@nestjs/microservices": "^8.2.4",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/swagger": "^5.1.5",
     "@types/faker": "^5.5.9",
@@ -35,6 +37,7 @@
     "class-validator": "^0.13.1",
     "faker": "^5.5.3",
     "grpc": "^1.24.11",
+    "path": "^0.12.7",
     "prisma": "^3.5.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
