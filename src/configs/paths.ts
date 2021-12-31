@@ -1,14 +1,5 @@
-import path from 'path';
+import { resolve } from 'path';
 
 export default {
-  proto: path.resolve(
-    __dirname,
-    '..',
-    '..',
-    'proto',
-    'github.com',
-    'robertokbr',
-    'coffy-auth',
-    'v1',
-  ),
+  proto: resolve(__dirname, '..', '..', 'proto', 'auth.proto'),
 };
