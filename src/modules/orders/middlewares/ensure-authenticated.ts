@@ -10,7 +10,7 @@ export default class EnsureAuthenticated implements NestMiddleware {
     private readonly client: ClientGrpc,
   ) {}
 
-  async use(request: Request, response: Response, next: NextFunction) {
+  async use(request: Request, _response: Response, next: NextFunction) {
     const authHeader = request.headers.authorization;
 
     if (!authHeader) throw new Error('JWT token is missing!');
