@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { OrdersRepository } from '../orders.repository';
-import { Order } from '../../../shared/prisma/entities';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { UpdateOrderDto } from '../dto/update-order.dto';
+import { FindOrdersDto } from '../dto/find-orders.dto';
 
 @Injectable()
 export class OrdersService {
@@ -12,11 +12,8 @@ export class OrdersService {
     return this.ordersRepository.create(data);
   }
 
-  async findAll(query?: Partial<Order>) {
-    return this.ordersRepository.find({
-      customer: query.customer,
-      ...query,
-    });
+  async findAll(query: FindOrdersDto) {
+    return this.ordersRepository.find(query);
   }
 
   async update({ id, code }: UpdateOrderDto) {

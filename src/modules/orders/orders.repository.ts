@@ -1,6 +1,7 @@
 import { Order, PrismaClient } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
+import { FindOrdersDto } from './dto/find-orders.dto';
 
 @Injectable()
 export class OrdersRepository {
@@ -24,7 +25,7 @@ export class OrdersRepository {
     });
   }
 
-  public async find(query?: Partial<Order>) {
+  public async find(query?: FindOrdersDto) {
     const { customer, ...rest } = query;
 
     return this.client.findMany({
