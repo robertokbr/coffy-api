@@ -1,12 +1,17 @@
 syntax = "proto3";
-import "shared.proto";
+
+package Auth;
 
 service AuthService {
-  rpc createPassCode (Shared.Void) returns (PassCodeResponse);
+  rpc createPassCode (Void) returns (PassCodeResponse);
   rpc createSession (CreateSessionRequest) returns (JWTResponse);
   rpc updateSession (UpdateSessionRequest) returns (JWTResponse);
   rpc getSessionPayload (GetSessionPayloadRequest) returns (PayloadResponse);
 }
+
+// Requests
+message Void {}
+
 
 // Requests
 
