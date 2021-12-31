@@ -17,6 +17,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Coffy API documentation')
     .setVersion('1.0')
+    .addBearerAuth()
     .setDescription(
       'Coffy API is the API of the app Coffy made with react native, and located at my Github',
     )
