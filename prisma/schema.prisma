@@ -16,7 +16,7 @@ model Order {
   code Int 
   createdAt DateTime @default(now())
   items OrderItems[]
-  orderState OrderState @relation(fields: [code], references: [code])
+  orderState OrderState? @relation(fields: [code], references: [code])
 }
 
 model Item {
@@ -37,8 +37,8 @@ model OrderItems {
   itemId Int
   amount Int
   isValid Boolean @default(true)
-  item Item @relation(fields: [itemId], references: [id])
-  order Order @relation(fields: [orderId], references: [id])
+  item Item? @relation(fields: [itemId], references: [id])
+  order Order? @relation(fields: [orderId], references: [id])
 }
 
 model OrderState {
