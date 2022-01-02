@@ -12,7 +12,7 @@ export class CreateOrderDto {
   customer: Record<string, any>;
 
   @IsArray()
-  @ApiProperty()
+  @ApiProperty({ example: [{ id: 1, amount: 5 }] })
   items: Array<{
     id: number;
     amount: number;
