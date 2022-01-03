@@ -11,6 +11,9 @@ export class OrdersRepository {
     const { items, ...dto } = data;
 
     return this.client.create({
+      include: {
+        items: true,
+      },
       data: {
         ...dto,
         items: {
