@@ -23,7 +23,7 @@ export class FindOrdersDto {
   @IsEnum(StateCode)
   @IsOptional()
   @ApiProperty({ required: false })
-  code?: StateCode;
+  stateCode?: StateCode;
 
   @IsDate()
   @IsOptional()

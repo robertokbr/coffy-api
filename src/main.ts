@@ -19,7 +19,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addBearerAuth()
     .setDescription(
-      'Coffy API is the API of the app Coffy made with react native, and located at my Github. To use this you must run the coffy-auth API, generate a pass-code and after create session.',
+      'Coffy API is the API of the app Coffy made with react native, and located at my Github. To use this you must run the coffy-auth API, and use these endpoints to: generate a passcode > create a session > authorize.',
     )
     .build();
 

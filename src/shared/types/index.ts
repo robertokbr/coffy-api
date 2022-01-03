@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 export type JsonObject = { [key: string]: string };
 
 export interface AuthService {
-  createPassCode(data: any): Observable<{
+  createPasscode(data: any): Observable<{
     code: string;
     createdAt: string;
   }>;

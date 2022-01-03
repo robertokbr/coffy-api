@@ -20,17 +20,19 @@ export class OrdersController {
   @Post()
   create(@Body() { items }: CreateOrderItemsDto, @GetUser() user: User) {
     return this.ordersService.create({
-      code: StateCode.Waiting,
+      stateCode: StateCode.Waiting,
       customer: user,
       items,
     });
   }
 
+  @ApiBearerAuth()
   @Get()
   findAll(@Query() findOrderDto: FindOrdersDto) {
     return this.ordersService.findAll(findOrderDto);
   }
 
+  @ApiBearerAuth()
   @Put()
   update(@Body() updateOrderDto: UpdateOrderDto) {
     return this.ordersService.update(updateOrderDto);

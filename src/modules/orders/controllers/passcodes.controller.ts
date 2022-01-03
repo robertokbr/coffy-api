@@ -3,9 +3,9 @@ import { ClientGrpc } from '@nestjs/microservices';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from 'src/shared/types';
 
-@ApiTags('pass-codes')
-@Controller('pass-codes')
-export class PassCodesController implements OnModuleInit {
+@ApiTags('passcodes')
+@Controller('passcodes')
+export class PasscodesController implements OnModuleInit {
   private authService: AuthService;
 
   constructor(
@@ -19,6 +19,6 @@ export class PassCodesController implements OnModuleInit {
 
   @Post()
   create() {
-    return this.authService.createPassCode({});
+    return this.authService.createPasscode({});
   }
 }

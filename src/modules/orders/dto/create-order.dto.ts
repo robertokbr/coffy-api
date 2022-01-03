@@ -5,7 +5,7 @@ import { StateCode } from '../enums/order-state.enum';
 export class CreateOrderDto {
   @IsEnum(StateCode)
   @ApiProperty()
-  code: StateCode;
+  stateCode: StateCode;
 
   @IsObject()
   @ApiProperty()

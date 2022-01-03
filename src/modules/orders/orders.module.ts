@@ -2,7 +2,7 @@ import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { OrdersService } from './services/orders.service';
 import { OrdersController } from './controllers/orders.controller';
 import { OrdersRepository } from './orders.repository';
-import { PassCodesController } from './controllers/pass-codes.controller';
+import { PasscodesController } from './controllers/passcodes.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import paths from 'src/configs/paths';
 import { SessionsController } from './controllers/sessions.controller';
@@ -26,7 +26,7 @@ import { ItemsController } from './controllers/items.controller';
   ],
   controllers: [
     OrdersController,
-    PassCodesController,
+    PasscodesController,
     SessionsController,
     ItemsController,
   ],

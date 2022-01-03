@@ -16,10 +16,10 @@ export class OrdersService {
     return this.ordersRepository.find(query);
   }
 
-  async update({ id, code }: UpdateOrderDto) {
+  async update({ id, stateCode }: UpdateOrderDto) {
     return this.ordersRepository.save({
       id,
-      code,
+      stateCode,
     });
   }
 }
