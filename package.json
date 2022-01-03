@@ -19,9 +19,10 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "seeds:run": "ts-node src/shared/prisma/seeds/index.ts",
-    "migrations:run": "prisma migrate dev",
-    "setup:dev": "npm run migrations:run && npm run seeds:run"
+    "migration:reset": "prisma migrate reset",
+    "migration:run": "prisma migrate dev",
+    "seed:run": "ts-node src/shared/prisma/seeds/index.ts",
+    "setup:dev": "npm run migration:reset && npm run migration:run && npm run seed:run"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.4.5",
