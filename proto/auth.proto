@@ -3,7 +3,7 @@ syntax = "proto3";
 package Auth;
 
 service AuthService {
-  rpc createPassCode (Void) returns (PassCodeResponse);
+  rpc createPasscode (Void) returns (PasscodeResponse);
   rpc createSession (CreateSessionRequest) returns (JWTResponse);
   rpc updateSession (UpdateSessionRequest) returns (JWTResponse);
   rpc getSessionPayload (GetSessionPayloadRequest) returns (PayloadResponse);
@@ -12,9 +12,7 @@ service AuthService {
 // Requests
 message Void {}
 
-
 // Requests
-
 message CreateSessionRequest {
   string code = 1;
   string name = 2;
@@ -30,8 +28,7 @@ message GetSessionPayloadRequest {
 }
 
 // Responses
-
-message PassCodeResponse {
+message PasscodeResponse {
   string code = 1;
   string createdAt = 2;
 }
@@ -44,5 +41,5 @@ message JWTResponse {
 message PayloadResponse {
   string id = 1;
   string name = 2;
-  string code = 3;
+  string createdAt = 3;
 }
