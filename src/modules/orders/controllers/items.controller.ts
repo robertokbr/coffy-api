@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ItemsRepository } from '../items.repository';
 
@@ -8,7 +8,7 @@ export class ItemsController {
   constructor(private readonly itemsRepository: ItemsRepository) {}
 
   @Get()
-  findAll(@Query() query: any) {
+  findAll() {
     return this.itemsRepository.find();
   }
 }
