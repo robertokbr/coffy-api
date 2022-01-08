@@ -1,11 +1,11 @@
-import { Order, PrismaClient } from '.prisma/client';
+import { Orders, PrismaClient } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { FindOrdersDto } from './dto/find-orders.dto';
 
 @Injectable()
 export class OrdersRepository {
-  private client = new PrismaClient().order;
+  private client = new PrismaClient().orders;
 
   public async create(data: CreateOrderDto) {
     const { items, ...dto } = data;
@@ -41,7 +41,7 @@ export class OrdersRepository {
     });
   }
 
-  public async save(order: Partial<Order>) {
+  public async save(order: Partial<Orders>) {
     return this.client.update({
       data: order,
       where: {

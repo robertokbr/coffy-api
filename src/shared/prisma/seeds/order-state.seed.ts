@@ -27,7 +27,7 @@ export default class OrderStateSeed {
 
     await Promise.all(
       data.map((os) =>
-        client.orderState.upsert({
+        client.orderStates.upsert({
           where: { code: os.code },
           update: {},
           create: os,

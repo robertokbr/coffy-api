@@ -5,7 +5,7 @@ export default class ItemsSeed {
   static async run(client: PrismaClient) {
     logger.info({ context: 'PRISMA', message: '🌱 Running Items seeds' });
 
-    await client.item.upsert({
+    await client.items.upsert({
       where: { id: 0 },
       update: {},
       create: {
