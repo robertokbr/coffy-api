@@ -9,6 +9,8 @@ import { SessionsController } from './controllers/sessions.controller';
 import EnsureAuthenticated from './middlewares/ensure-authenticated';
 import { ItemsRepository } from './items.repository';
 import { ItemsController } from './controllers/items.controller';
+import { OrderStatesRepository } from './order-states.repository';
+import { OrderStatesController } from './controllers/order-states.controller';
 
 @Module({
   imports: [
@@ -29,8 +31,14 @@ import { ItemsController } from './controllers/items.controller';
     PasscodesController,
     SessionsController,
     ItemsController,
+    OrderStatesController,
   ],
-  providers: [OrdersService, OrdersRepository, ItemsRepository],
+  providers: [
+    OrdersService,
+    OrdersRepository,
+    ItemsRepository,
+    OrderStatesRepository,
+  ],
 })
 export class OrdersModule {
   configure(consumer: MiddlewareConsumer) {
