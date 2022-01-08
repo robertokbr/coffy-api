@@ -11,6 +11,8 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
+      transform: true,
+      forbidNonWhitelisted: true,
     }),
   );
 
@@ -19,7 +21,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .addBearerAuth()
     .setDescription(
-      'Coffy API is the API of the app Coffy made with react native, and located at my Github. To use this you must run the coffy-auth API, and use these endpoints to: generate a passcode > create a session > authorize.',
+      'Coffy API is the Backend for frontend of the Coffy app, project made with react native, and located at my Github. To use this API you must run the coffy-auth API, and use these endpoints to: generate a passcode > create a session > authorize > do whatever you want!!',
     )
     .build();
 
