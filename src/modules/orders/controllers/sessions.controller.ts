@@ -1,6 +1,6 @@
 import { Body, Controller, Inject, OnModuleInit, Post } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthService } from 'src/shared/types';
 import { CreateSessionsDto } from '../dto/create-session.dto';
 
@@ -19,6 +19,10 @@ export class SessionsController implements OnModuleInit {
   }
 
   @Post()
+  @ApiOperation({
+    summary:
+      'Create a session with a code and a name to generate the Auth JWT.',
+  })
   create(@Body() createSessionDto: CreateSessionsDto) {
     return this.authService.createSession(createSessionDto);
   }

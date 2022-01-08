@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Query } from '@nestjs/common';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { FindItemsDto } from '../dto/find-items.dto';
 import { ItemsRepository } from '../items.repository';
 
 @ApiTags('items')
@@ -7,8 +8,11 @@ import { ItemsRepository } from '../items.repository';
 export class ItemsController {
   constructor(private readonly itemsRepository: ItemsRepository) {}
 
+  @ApiOperation({
+    summary: 'Get all items or filter the result by the item availability',
+  })
   @Get()
-  findAll() {
-    return this.itemsRepository.find();
+  findAll(@Query() findItemsDto?: FindItemsDto) {
+    return this.itemsRepository.find(findItemsDto);
   }
 }
