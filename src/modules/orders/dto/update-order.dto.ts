@@ -1,9 +1,9 @@
-import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { IsNumber } from 'class-validator';
-import { CreateOrderDto } from './create-order.dto';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsEnum } from 'class-validator';
+import { StateCode } from '../enums/order-state.enum';
 
-export class UpdateOrderDto extends PartialType(CreateOrderDto) {
-  @IsNumber()
+export class UpdateOrderDto {
+  @IsEnum(StateCode)
   @ApiProperty()
-  id: number;
+  stateCode: StateCode;
 }
