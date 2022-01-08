@@ -22,7 +22,8 @@
     "migration:reset": "prisma migrate reset",
     "migration:run": "prisma migrate dev",
     "seed:run": "ts-node src/shared/prisma/seeds/index.ts",
-    "setup:dev": "npm run migration:reset && npm run migration:run && npm run seed:run"
+    "setup:dev": "npm run migration:reset && npm run migration:run && npm run seed:run",
+    "db:show": "npx prisma studio"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.4.5",
