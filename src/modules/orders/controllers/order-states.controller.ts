@@ -8,7 +8,7 @@ export class OrderStatesController {
   constructor(private readonly orderStatesRepository: OrderStatesRepository) {}
 
   @ApiOperation({
-    summary: 'Get the states that one order can have.',
+    summary: 'Get all the states that one order can get.',
   })
   @Get()
   public async findAll() {

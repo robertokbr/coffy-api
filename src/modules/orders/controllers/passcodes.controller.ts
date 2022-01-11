@@ -18,7 +18,7 @@ export class PasscodesController implements OnModuleInit {
   }
 
   @ApiOperation({
-    summary: 'Generate a passcode to use as the POST /sessions code.',
+    summary: 'Generate a randomic passcode.',
   })
   @Post()
   create() {

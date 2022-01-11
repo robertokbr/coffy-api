@@ -20,7 +20,7 @@ export class OrdersController {
 
   @ApiBearerAuth()
   @ApiOperation({
-    summary: 'Create an order specifying the items and amount.',
+    summary: 'Create an order specifying item ids and amounts.',
   })
   @ApiResponse({
     description: 'Return the created order and the chosen items',
@@ -37,7 +37,7 @@ export class OrdersController {
   @ApiBearerAuth()
   @ApiOperation({
     summary:
-      'Get all order or filter the result by stateCode, id or createdAt params.',
+      'Get all order record or filter the result by order state code, id or created at params.',
   })
   @Get()
   findAll(@Query() findOrderDto: FindOrdersDto) {
