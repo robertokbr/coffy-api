@@ -13,7 +13,7 @@ import { OrderStatesController } from './controllers/order-states.controller';
 import grpcConfigs from '../../configs/grpc';
 
 @Module({
-  imports: [ClientsModule.register([grpcConfigs.authClient])],
+  imports: [ClientsModule.register([grpcConfigs.authService])],
   controllers: [
     OrdersController,
     PasscodesController,
