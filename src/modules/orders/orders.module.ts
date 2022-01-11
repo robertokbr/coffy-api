@@ -3,29 +3,17 @@ import { OrdersService } from './services/orders.service';
 import { OrdersController } from './controllers/orders.controller';
 import { OrdersRepository } from './orders.repository';
 import { PasscodesController } from './controllers/passcodes.controller';
-import { ClientsModule, Transport } from '@nestjs/microservices';
-import paths from 'src/configs/paths';
+import { ClientsModule } from '@nestjs/microservices';
 import { SessionsController } from './controllers/sessions.controller';
 import EnsureAuthenticated from './middlewares/ensure-authenticated';
 import { ItemsRepository } from './items.repository';
 import { ItemsController } from './controllers/items.controller';
 import { OrderStatesRepository } from './order-states.repository';
 import { OrderStatesController } from './controllers/order-states.controller';
+import grpcConfigs from '../../configs/grpc';
 
 @Module({
-  imports: [
-    ClientsModule.register([
-      {
-        name: 'AuthService',
-        transport: Transport.GRPC,
-        options: {
-          url: '0.0.0.0:50051',
-          package: 'Auth',
-          protoPath: paths.proto,
-        },
-      },
-    ]),
-  ],
+  imports: [ClientsModule.register([grpcConfigs.authClient])],
   controllers: [
     OrdersController,
     PasscodesController,
