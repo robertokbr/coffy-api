@@ -11,10 +11,10 @@ datasource db {
 }
 
 model Orders {
-  id         Int          @id @default(autoincrement())
+  id         Int           @id @default(autoincrement())
   customer   Json
   stateCode  Int
-  createdAt  DateTime     @default(now())
+  createdAt  DateTime      @default(now())
   items      OrderItems[]
   orderState OrderStates?  @relation(fields: [stateCode], references: [code])
 }
@@ -26,17 +26,18 @@ model Items {
   price       Int
   imageURL    String
   isAvailable Boolean      @default(true)
+  isHighlighted Boolean    @default(true)
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @default(now())
   orders      OrderItems[]
 }
 
 model OrderItems {
-  id      Int     @id @default(autoincrement())
+  id      Int      @id @default(autoincrement())
   orderId Int
   itemId  Int
   amount  Int
-  isValid Boolean @default(true)
+  isValid Boolean  @default(true)
   item    Items?   @relation(fields: [itemId], references: [id])
   order   Orders?  @relation(fields: [orderId], references: [id])
 }
