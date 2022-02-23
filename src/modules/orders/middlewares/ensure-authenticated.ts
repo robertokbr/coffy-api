@@ -7,7 +7,7 @@ import { firstValueFrom } from 'rxjs';
 @Injectable()
 export default class EnsureAuthenticated implements NestMiddleware {
   constructor(
-    @Inject('AuthServiceClient')
+    @Inject('AuthServiceProvider')
     private readonly client: ClientGrpc,
   ) {}
 

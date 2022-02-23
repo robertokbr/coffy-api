@@ -1,9 +1,9 @@
+import { ClientsModule } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
-
-export type JsonObject = { [key: string]: string };
+import { grpcConfigs } from 'src/configs/grpc';
 
 export interface AuthService {
-  createPasscode(data: any): Observable<{
+  createPasscode({}): Observable<{
     code: string;
     createdAt: string;
   }>;
@@ -17,3 +17,7 @@ export interface AuthService {
     expiration: string;
   }>;
 }
+
+export const AuthServiceProvider = ClientsModule.register([
+  grpcConfigs.authService,
+]);

@@ -12,7 +12,7 @@ export class SessionsController implements OnModuleInit {
   private authService: AuthService;
 
   constructor(
-    @Inject('AuthServiceClient')
+    @Inject('AuthServiceProvider')
     private readonly client: ClientGrpc,
   ) {}
 

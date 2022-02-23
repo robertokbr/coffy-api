@@ -11,7 +11,7 @@ export class PasscodesController implements OnModuleInit {
   private authService: AuthService;
 
   constructor(
-    @Inject('AuthServiceClient')
+    @Inject('AuthServiceProvider')
     private readonly client: ClientGrpc,
   ) {}
 
