@@ -13,8 +13,6 @@ import {
 } from '@nestjs/swagger';
 import { UserDto } from '../dto/user.dto';
 import { OrderDto } from '../dto/order.dto';
-import { plainToClass } from 'class-transformer';
-import { Console } from 'console';
 
 @ApiTags('orders')
 @Controller('orders')
@@ -27,6 +25,7 @@ export class OrdersController {
   })
   @ApiResponse({
     description: 'Return the created order and the chosen items',
+    type: OrderDto,
   })
   @Post()
   async create(
@@ -45,6 +44,9 @@ export class OrdersController {
     summary:
       'Get all order record or filter the result by order state code, id or created at params.',
   })
+  @ApiResponse({
+    type: [OrderDto],
+  })
   @Get()
   async findAll(
     @Query() findOrderDto: FindOrdersDto,
@@ -57,11 +59,14 @@ export class OrdersController {
   @ApiOperation({
     summary: 'Update an order state.',
   })
+  @ApiResponse({
+    type: OrderDto,
+  })
   @Put(':id')
   async update(
     @Body() updateOrderDto: UpdateOrderDto,
     @Param('id') id: string,
-  ) {
+  ): Promise<OrderDto> {
     return this.ordersService.update(updateOrderDto, +id);
   }
 }
