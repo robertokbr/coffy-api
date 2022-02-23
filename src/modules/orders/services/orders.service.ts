@@ -37,6 +37,6 @@ export class OrdersService {
       JSON.stringify(order),
     );
 
-    return order;
+    return OrderDto.fromEntity(order);
   }
 }
