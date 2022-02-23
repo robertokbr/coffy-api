@@ -1,6 +1,8 @@
 # Coffy API
 This is the coffy app REST API, that has been made with Nestjs + Prisma.io and grpc-js.
 
+<img src="https://github.com/robertokbr/coffy-api/blob/main/.github/doc.png" width="50%"/>
+
 
 ## 🚗 How to run 
 ```bash
