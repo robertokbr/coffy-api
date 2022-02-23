@@ -1,6 +1,6 @@
 import { Items, PrismaClient } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
-import { CreateItemsDto } from './dto/create-item.dto';
+import { CreateItemsDto } from '../dto/create-item.dto';
 
 @Injectable()
 export class ItemsRepository {
@@ -24,11 +24,11 @@ export class ItemsRepository {
     });
   }
 
-  public async save(item: Items) {
+  public async save(item: Partial<Items>, id: number) {
     return this.client.update({
       data: item,
       where: {
-        id: item.id,
+        id,
       },
     });
   }

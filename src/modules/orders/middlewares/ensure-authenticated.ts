@@ -1,12 +1,13 @@
 import { Inject, Injectable, NestMiddleware } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { NextFunction, Request, Response } from 'express';
-import { AuthService } from 'src/shared/types';
+import { AuthService } from '../../common/providers/auth-service.provider';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export default class EnsureAuthenticated implements NestMiddleware {
   constructor(
-    @Inject('AuthService')
+    @Inject('AuthServiceClient')
     private readonly client: ClientGrpc,
   ) {}
 
@@ -21,7 +22,7 @@ export default class EnsureAuthenticated implements NestMiddleware {
 
     const data = authService.getSessionPayload({ jwt });
 
-    request.user = await data.toPromise();
+    request.user = await firstValueFrom(data);
 
     next();
   }

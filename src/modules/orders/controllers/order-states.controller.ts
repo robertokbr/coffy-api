@@ -1,6 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { OrderStatesRepository } from '../order-states.repository';
+import { OrderStateDto } from '../dto/order-state.dto';
+import { OrderStatesRepository } from '../repositories/order-states.repository';
 
 @ApiTags('order-states')
 @Controller('order-states')
@@ -11,7 +12,7 @@ export class OrderStatesController {
     summary: 'Get all the states that one order can get.',
   })
   @Get()
-  public async findAll() {
+  async findAll(): Promise<OrderStateDto[]> {
     return this.orderStatesRepository.find();
   }
 }

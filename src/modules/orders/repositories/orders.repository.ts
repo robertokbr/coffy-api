@@ -1,21 +1,23 @@
 import { Orders, PrismaClient } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
-import { CreateOrderDto } from './dto/create-order.dto';
-import { FindOrdersDto } from './dto/find-orders.dto';
+import { CreateOrderDto } from '../dto/create-order.dto';
+import { FindOrdersDto } from '../dto/find-orders.dto';
+import { UserDto } from '../dto/user.dto';
 
 @Injectable()
 export class OrdersRepository {
   private client = new PrismaClient().orders;
 
   public async create(data: CreateOrderDto) {
-    const { items, ...dto } = data;
+    const { items, customer, stateCode } = data;
 
     return this.client.create({
       include: {
         items: true,
       },
       data: {
-        ...dto,
+        stateCode,
+        customer: JSON.stringify(customer),
         items: {
           createMany: {
             data: items.map(({ amount, id }) => ({
@@ -28,24 +30,24 @@ export class OrdersRepository {
     });
   }
 
-  public async find(query?: FindOrdersDto) {
-    const { customer, ...rest } = query;
+  public async find(customer: UserDto, query: FindOrdersDto) {
+    const { withUserFilter, ...rest } = query;
 
     return this.client.findMany({
       where: {
         ...rest,
         customer: {
-          equals: customer,
+          ...(withUserFilter && { equals: JSON.stringify(customer) }),
         },
       },
     });
   }
 
-  public async save(order: Partial<Orders>) {
+  public async save(order: Partial<Orders>, id: number) {
     return this.client.update({
       data: order,
       where: {
-        id: order.id,
+        id,
       },
     });
   }

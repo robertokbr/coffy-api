@@ -1,7 +1,9 @@
 import { Controller, Inject, OnModuleInit, Post } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { AuthService } from 'src/shared/types';
+import { AuthService } from '../../common/providers/auth-service.provider';
+import { PasscodeDto } from '../dto/passcode.dto';
+import { firstValueFrom } from 'rxjs';
 
 @ApiTags('passcodes')
 @Controller('passcodes')
@@ -9,7 +11,7 @@ export class PasscodesController implements OnModuleInit {
   private authService: AuthService;
 
   constructor(
-    @Inject('AuthService')
+    @Inject('AuthServiceClient')
     private readonly client: ClientGrpc,
   ) {}
 
@@ -21,7 +23,9 @@ export class PasscodesController implements OnModuleInit {
     summary: 'Generate a randomic passcode.',
   })
   @Post()
-  create() {
-    return this.authService.createPasscode({});
+  async create(): Promise<PasscodeDto> {
+    const passcode = this.authService.createPasscode({});
+
+    return firstValueFrom(passcode);
   }
 }

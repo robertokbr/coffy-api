@@ -3,7 +3,6 @@ import { OrdersService } from '../services/orders.service';
 import { CreateOrderItemsDto } from '../dto/create-order-items.dto';
 import { FindOrdersDto } from '../dto/find-orders.dto';
 import { GetUser } from 'src/shared/decorators/get-user';
-import { User } from '../entities/user.entity';
 import { StateCode } from '../enums/order-state.enum';
 import { UpdateOrderDto } from '../dto/update-order.dto';
 import {
@@ -12,6 +11,10 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { UserDto } from '../dto/user.dto';
+import { OrderDto } from '../dto/order.dto';
+import { plainToClass } from 'class-transformer';
+import { Console } from 'console';
 
 @ApiTags('orders')
 @Controller('orders')
@@ -26,7 +29,10 @@ export class OrdersController {
     description: 'Return the created order and the chosen items',
   })
   @Post()
-  create(@Body() { items }: CreateOrderItemsDto, @GetUser() user: User) {
+  async create(
+    @Body() { items }: CreateOrderItemsDto,
+    @GetUser() user: UserDto,
+  ): Promise<OrderDto> {
     return this.ordersService.create({
       stateCode: StateCode.Waiting,
       customer: user,
@@ -40,8 +46,11 @@ export class OrdersController {
       'Get all order record or filter the result by order state code, id or created at params.',
   })
   @Get()
-  findAll(@Query() findOrderDto: FindOrdersDto) {
-    return this.ordersService.findAll(findOrderDto);
+  async findAll(
+    @Query() findOrderDto: FindOrdersDto,
+    @GetUser() user: UserDto,
+  ): Promise<OrderDto[]> {
+    return this.ordersService.findAll(user, findOrderDto);
   }
 
   @ApiBearerAuth()
@@ -49,7 +58,10 @@ export class OrdersController {
     summary: 'Update an order state.',
   })
   @Put(':id')
-  update(@Body() updateOrderDto: UpdateOrderDto, @Param('id') id: string) {
+  async update(
+    @Body() updateOrderDto: UpdateOrderDto,
+    @Param('id') id: string,
+  ) {
     return this.ordersService.update(updateOrderDto, +id);
   }
 }

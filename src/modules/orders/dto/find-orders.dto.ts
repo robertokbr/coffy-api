@@ -1,32 +1,31 @@
-import { JsonObject } from 'src/shared/types';
 import { StateCode } from '../enums/order-state.enum';
 import {
   IsNumber,
-  IsObject,
   IsEnum,
   IsDate,
   IsOptional,
+  IsBoolean,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class FindOrdersDto {
-  @IsNumber()
   @IsOptional()
+  @IsNumber()
   @ApiProperty({ required: false })
   id?: number;
 
-  @IsObject()
   @IsOptional()
+  @IsBoolean()
   @ApiProperty({ required: false })
-  customer?: JsonObject;
+  withUserFilter?: boolean;
 
-  @IsEnum(StateCode)
   @IsOptional()
+  @IsEnum(StateCode)
   @ApiProperty({ required: false })
   stateCode?: StateCode;
 
-  @IsDate()
   @IsOptional()
+  @IsDate()
   @ApiProperty({ required: false })
   createdAt?: Date;
 }
