@@ -19,6 +19,21 @@ model Orders {
   orderState OrderStates?  @relation(fields: [stateCode], references: [code])
 }
 
+model Collections {
+  id Int @id @default(autoincrement())
+  title String
+  isLargeSize Boolean @default(true)
+  itemsCollections ItemsCollections[]
+}
+
+model ItemsCollections {
+  id Int @id @default(autoincrement())
+  collectionId Int
+  itemId Int
+  item Items? @relation(fields: [itemId], references: [id])
+  collection Collections? @relation(fields: [collectionId], references: [id])
+}
+
 model Items {
   id          Int          @id @default(autoincrement())
   name        String
@@ -26,10 +41,10 @@ model Items {
   price       Int
   imageURL    String
   isAvailable Boolean      @default(true)
-  isHighlighted Boolean    @default(true)
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @default(now())
   orders      OrderItems[]
+  itemsCollections ItemsCollections[]
 }
 
 model OrderItems {
