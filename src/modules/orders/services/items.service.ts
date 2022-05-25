@@ -16,7 +16,7 @@ export class ItemsService {
   }
 
   update(updateItemDto: UpdateItemDto, id: number) {
-    this.websocketGatewayProvider.handleUpdatedItemMessage(
+    this.websocketGatewayProvider.emitItemUpdatedEvent(
       JSON.stringify(updateItemDto),
     );
 

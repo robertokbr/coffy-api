@@ -23,7 +23,7 @@ export class SessionsController implements OnModuleInit {
   @Post()
   @ApiOperation({
     summary:
-      'Create a session with a code and a name to generate the Auth JWT.',
+      'Create a session by a code and a name to generate the Auth JWT.',
   })
   create(@Body() createSessionDto: CreateSessionsDto): Promise<SessionDto> {
     const session = this.authService.createSession(createSessionDto);

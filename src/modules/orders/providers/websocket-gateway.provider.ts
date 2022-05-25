@@ -11,15 +11,15 @@ export class WebsocketGatewayProvider {
   @WebSocketServer()
   server: Server;
 
-  handleOrderCreatedMessage(payload: string): void {
+  emitOrderCreatedEvent(payload: string): void {
     this.server.emit('order-created', payload);
   }
 
-  handleUpdatedItemMessage(payload: string): void {
+  emitItemUpdatedEvent(payload: string): void {
     this.server.emit('item-updated', payload);
   }
 
-  handleUpdateOrderMessage(payload: string): void {
+  emitOrderUpdatedEvent(payload: string): void {
     this.server.emit('order-updated', payload);
   }
 
@@ -32,9 +32,6 @@ export class WebsocketGatewayProvider {
   }
 
   handleConnection(@ConnectedSocket() client: Socket) {
-    logger.info({
-      context: 'Websocket',
-      message: 'Client Connected: ' + client.id,
-    });
+    logger.info({ context: 'Websocket', message: 'Client Connected'});
   }
 }
