@@ -5,7 +5,10 @@ This is the coffy mobile app Backend repository. It has been made using Nestjs a
 - [Orders Service](#user-content-orders-service)
 - [Auth Service](#user-content-auth-service)
 
+---
+
 ## Orders service
+Orders service is a Nest.JS API responsible for handle orders comming from the mobile app [coffy](https://github.com/robertokbr/coffy).
 
 ### 🚗 How to run 
 ```bash
@@ -27,10 +30,11 @@ This is the coffy mobile app Backend repository. It has been made using Nestjs a
   npm run db:show
 ```
 
+---
+
 ## Auth service
 
-### 🚀 Intro
-Coffy-auth is a microservice responsible for the authentication of the mobile app [coffy](https://github.com/robertokbr/coffy), which I have been building using ```gRPC```, as a way to learn better this technology and its integration with other APIs.
+Auth service is a microservice responsible for the authentication of the mobile app [coffy](https://github.com/robertokbr/coffy), which I have been building using ```gRPC```, as a way to learn better this technology and its integration with other APIs.
 
 ### 📓 What is gRPC
 The gRPC is a google tech, which aims to be the evolution of the RPC architecture (Remote Procedure Call). For being HTTP2 based, the gRPC is way faster than the REST, not only because of the HTTP2 multiplexing, which allows the API to receive many requests in just one connection, but also because of the use of protobufs, which is an IDL ( Interface Definition Language ) used to define the gRPC services, and serialize the income and outcome data by:
@@ -46,11 +50,6 @@ The gRPC is a google tech, which aims to be the evolution of the RPC architectur
 - [x] It should be able to create authentications by a passcode and a user name, and return a jwt with 1 hour of expiration time, that contains as payload the user name and the generated user id.
 - [x] It should be to update the session JWT with some old JWT and a new passcode.
 - [x] It should be able to decode the JWT and return the user payload.
-
-### 💻 Coding
-- The proto file will be stored inside the path github.com/robertokbr/coffy-auth/v1, following the good practice of the proto packages pattern.
-- To each RPC endpoint there will be a proper message to design the shape of the payload, following the pattern 'someMethodRequest' to the request data and 'someResourceResponse' to the response data.
-- The project protos will be dynamically compiled using proto-loader instead of statically compiled.
 
 ### 🛠️ VSCode Extensio
 VScode proto-3 to.
