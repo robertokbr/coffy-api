@@ -15,10 +15,13 @@ Orders service is a Nest.JS API responsible for handle orders comming from the m
   # database
   docker-compose up -d
 
+  # enter the path
+  cd orders-service
+  
   # download deps
-  npm run install
+  npm install
 
-  # run setup dev
+  # run db setup
   npm run setup:dev
 
   # run 
@@ -66,3 +69,15 @@ VScode proto-3 to.
 
 ### References
 - [gRPC bookstore](https://github.com/rocketseat-experts-club/grpc-bookstore) repository
+
+### 🚗 How to run 
+```bash
+  # enter the path
+  cd auth-service
+  
+  # download deps
+  npm install
+
+  # run 
+  npm run dev
+```
