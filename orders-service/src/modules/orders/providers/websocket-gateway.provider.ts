@@ -32,6 +32,6 @@ export class WebsocketGatewayProvider {
   }
 
   handleConnection(@ConnectedSocket() client: Socket) {
-    logger.info({ context: 'Websocket', message: 'Client Connected'});
+    logger.info({ context: 'Websocket', message: 'Client Connected' });
   }
 }

@@ -17,9 +17,7 @@ export class OrdersService {
   async create(data: CreateOrderDto) {
     const order = await this.ordersRepository.create(data);
 
-    this.websocketGatewayProvider.emitOrderCreatedEvent(
-      JSON.stringify(order),
-    );
+    this.websocketGatewayProvider.emitOrderCreatedEvent(JSON.stringify(order));
 
     return OrderDto.fromEntity(order);
   }
@@ -33,9 +31,7 @@ export class OrdersService {
   async update(updateOrderDto: UpdateOrderDto, id: number) {
     const order = await this.ordersRepository.save(updateOrderDto, id);
 
-    this.websocketGatewayProvider.emitOrderUpdatedEvent(
-      JSON.stringify(order),
-    );
+    this.websocketGatewayProvider.emitOrderUpdatedEvent(JSON.stringify(order));
 
     return OrderDto.fromEntity(order);
   }
