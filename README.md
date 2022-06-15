@@ -2,12 +2,12 @@
 This is the coffy mobile app Backend repository. It has been made using Nestjs and grpc-js to create microservices and the API gateway.
 
 ## Summary
-- [Auth Service](#markdown-header-auth-service)
+- [Orders Service](#user-content-orders-service)
+- [Auth Service](#user-content-auth-service)
 
-<img src="https://github.com/robertokbr/coffy-api/blob/main/.github/doc.png" width="50%"/>
+## Orders service
 
-
-## 🚗 How to run 
+### 🚗 How to run 
 ```bash
   # database
   docker-compose up -d
@@ -22,13 +22,14 @@ This is the coffy mobile app Backend repository. It has been made using Nestjs a
   npm run start:dev
 ```
 
-## 🔭 How to visualize the db schema
+### 🔭 How to visualize the db schema
 ```bash
   npm run db:show
 ```
 
 ## Auth service
-## 🚀 Intro
+
+### 🚀 Intro
 Coffy-auth is a microservice responsible for the authentication of the mobile app [coffy](https://github.com/robertokbr/coffy), which I have been building using ```gRPC```, as a way to learn better this technology and its integration with other APIs.
 
 ### 📓 What is gRPC
