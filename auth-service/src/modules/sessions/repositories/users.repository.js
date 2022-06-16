@@ -11,7 +11,8 @@ export default class UsersRepository {
    */
   async findById(id) {
     const [user] = await connection.raw(
-      `SELECT * FROM "users" WHERE "id" = "${id}"`
+      `SELECT * FROM "users" WHERE "id" = ?`,
+      [id],
     );
 
     return user;

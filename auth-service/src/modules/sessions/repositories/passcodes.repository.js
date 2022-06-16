@@ -10,7 +10,8 @@ export default class PasscodesRepository {
    */
   async findByCode (code) {
     const [passcode] = await connection.raw(
-      `SELECT * FROM "passcodes" WHERE "code" = "${code}"`
+      `SELECT * FROM "passcodes" WHERE "code" = ?`,
+      [code],
     );
 
     return passcode;
