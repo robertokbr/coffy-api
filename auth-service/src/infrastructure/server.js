@@ -1,9 +1,11 @@
 import 'dotenv/config';
 import grpc from 'grpc';
 import path from 'path';
-import paths from './configs/paths.cjs';
+import paths from '../configs/paths.cjs';
 import * as protoLoader from '@grpc/proto-loader';
 import { authHandler } from './handlers/index.js';
+
+const PORT = process.env.PORT;
 
 const packageDefinition = protoLoader.loadSync(
   path.resolve(paths.proto, 'auth.proto')
@@ -19,10 +21,10 @@ server.addService(
 );
 
 server.bindAsync(
-  'localhost:50051',
+  `localhost:${PORT}`,
   grpc.ServerCredentials.createInsecure(),
   () => {
-    console.info('gRPC server is listening on port 50051!');
+    console.info(`gRPC server is listening on port ${PORT}!`);
     server.start();
   }
 );

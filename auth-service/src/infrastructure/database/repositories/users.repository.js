@@ -1,5 +1,5 @@
-import User from '../models/User.js';
-import { connection } from '../../../database/index.js';
+import User from '../../../domain/models/User.js';
+import { connection } from '../index.js';
 
 export default class UsersRepository {
   _client = connection('users');

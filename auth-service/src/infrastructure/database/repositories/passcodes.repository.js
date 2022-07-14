@@ -1,5 +1,5 @@
-import Passcode from '../models/Passcode.js';
-import { connection } from '../../../database/index.js';
+import Passcode from '../../../domain/models/Passcode.js';
+import { connection } from '../index.js';
 
 export default class PasscodesRepository {
   _client = connection('passcodes');
