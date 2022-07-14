@@ -1,0 +1,19 @@
+{
+  "id": "80b3f714-6e1d-461f-9af0-9076829ab68f",
+  "importStreams": [
+    {
+      "id": "abf68dc8-b552-4d2f-ab1b-676c793135b1",
+      "name": "proto-file",
+      "importerName": "ProtoFile",
+      "createMissingOperations": true,
+      "options": {
+        "files": [
+          "../proto/github.com/robertokbr/coffy-auth/v1"
+        ],
+        "importPaths": []
+      }
+    }
+  ],
+  "authConfigs": [],
+  "certificates": []
+}

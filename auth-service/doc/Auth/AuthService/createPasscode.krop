@@ -1,0 +1,12 @@
+{
+  "details": {
+    "methodFqn": "Auth.AuthService.createPasscode"
+  },
+  "requests": [
+    {
+      "location": "createPasscode-request.json"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "grpc"
+}

@@ -1,0 +1,12 @@
+{
+  "details": {
+    "methodFqn": "Auth.AuthService.getSessionPayload"
+  },
+  "requests": [
+    {
+      "location": "getSessionPayload-request.json"
+    }
+  ],
+  "operationType": "unary",
+  "invokerName": "grpc"
+}
