@@ -21,6 +21,7 @@ module.exports = {
   migrations: path.resolve(
     __dirname,
     '..',
+    'infrastructure',
     'database',
     'migrations'
   ),
