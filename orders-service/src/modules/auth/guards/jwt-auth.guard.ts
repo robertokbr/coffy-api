@@ -1,20 +1,23 @@
-import { Inject, Injectable, NestMiddleware } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Inject, Injectable } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
-import { NextFunction, Request, Response } from 'express';
-import { AuthService } from '../../common/providers/auth-service.provider';
 import { firstValueFrom } from 'rxjs';
+import { AuthService } from 'src/modules/common/interfaces/auth-service.provider';
 
 @Injectable()
-export default class EnsureAuthenticated implements NestMiddleware {
+export class JwtAuthGuard implements CanActivate {
   constructor(
     @Inject('AuthServiceProvider')
     private readonly client: ClientGrpc,
   ) {}
 
-  async use(request: Request, _response: Response, next: NextFunction) {
+  async canActivate(
+    context: ExecutionContext,
+  ): Promise<boolean> {
+    const request = context.switchToHttp().getRequest();
+
     const authHeader = request.headers.authorization;
 
-    if (!authHeader) throw new Error('JWT token is missing!');
+    if (!authHeader) return false;
 
     const [_, jwt] = authHeader.split(' ');
 
@@ -24,6 +27,6 @@ export default class EnsureAuthenticated implements NestMiddleware {
 
     request.user = await firstValueFrom(data);
 
-    next();
+    return true;
   }
 }
