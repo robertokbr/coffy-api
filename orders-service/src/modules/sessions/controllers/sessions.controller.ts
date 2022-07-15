@@ -1,5 +1,5 @@
 import { Body, Controller, Inject, OnModuleInit, Post } from '@nestjs/common';
-import { ClientGrpc } from '@nestjs/microservices';
+import { ClientGrpc } from '@nestjs/microservices'
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { firstValueFrom } from 'rxjs';
 import { AuthServiceInterface } from 'src/modules/common/interfaces/auth-service.interface';
@@ -17,7 +17,9 @@ export class SessionsController implements OnModuleInit {
   ) {}
 
   onModuleInit() {
-    this.authService = this.client.getService<AuthServiceInterface>('AuthService');
+    this.authService = this.client.getService<AuthServiceInterface>(
+      'AuthService'
+    );
   }
 
   @Post()
