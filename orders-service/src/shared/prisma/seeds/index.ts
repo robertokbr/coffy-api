@@ -6,6 +6,8 @@ const client = new PrismaClient();
 
 const seeds = [OrderStateSeed, ItemsSeed];
 
-seeds.forEach((seed) => {
-  seed.run(client);
-});
+seeds.reduce(async (promise, seed) => {
+  await promise;
+  return seed.run(client);
+}, Promise.resolve());
+
