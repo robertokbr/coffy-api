@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Inject, Injectable } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
-import { AuthService } from 'src/modules/common/interfaces/auth-service.provider';
+import { AuthServiceInterface } from 'src/modules/common/interfaces/auth-service.interface';
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
@@ -21,7 +21,7 @@ export class JwtAuthGuard implements CanActivate {
 
     const [_, jwt] = authHeader.split(' ');
 
-    const authService = this.client.getService<AuthService>('AuthService');
+    const authService = this.client.getService<AuthServiceInterface>('AuthService');
 
     const data = authService.getSessionPayload({ jwt });
 
