@@ -1,10 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AuthServiceProvider } from '../common/providers/auth-service.provider';
-import { PasscodesController } from './controllers/passcodes.controller';
 import { SessionsController } from './controllers/sessions.controller';
 
+// Move module to API gateway 
 @Module({
-  controllers: [SessionsController, PasscodesController],
-  imports: [AuthServiceProvider],
+  controllers: [SessionsController],
 })
 export class SessionsModule {}
