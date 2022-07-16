@@ -1,5 +1,7 @@
 # Coffy Backend
-This is the coffy mobile app Backend repository. It has been made using Nestjs and grpc-js to create its microservices and its API gateway.
+This is the coffy app Backend repository. Coffy is a coffee store app that aims to manage orders from customers in a simple way. 
+You may notice that the architecture of this project has been done with lots of overengineering, but this is because I am using it to test multiple patterns and technologies such as Microservice architecture, Websocket, gRPC, REST, and soon GraphQL as well.
+
 
 ## Summary
 - [Orders Service](#user-content-orders-service)
@@ -11,6 +13,8 @@ This is the coffy mobile app Backend repository. It has been made using Nestjs a
 
 ## Orders service
 Orders service is a Nest.JS API responsible for handle orders comming from the mobile app [coffy](https://github.com/robertokbr/coffy).
+It comunicates with the auth-service gRPC api to create sessions and manage authorizations.
+As well as it uses websocket to emit real time events.   
 
 ### 🚗 How to run 
 ```bash
@@ -35,7 +39,6 @@ Orders service is a Nest.JS API responsible for handle orders comming from the m
 ---
 
 ## Auth service
-
 Auth service is a microservice responsible for the authentication of the mobile app [coffy](https://github.com/robertokbr/coffy), which I have been building using ```gRPC```, as a way to learn better this technology and its integration with other APIs.
 
 ### 📓 What is gRPC
