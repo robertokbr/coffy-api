@@ -2,7 +2,6 @@ import { Orders, PrismaClient } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from '../dto/create-order.dto';
 import { FindOrdersDto } from '../dto/find-orders.dto';
-import { UserDto } from '../dto/user.dto';
 
 @Injectable()
 export class OrdersRepository {
@@ -30,15 +29,11 @@ export class OrdersRepository {
     });
   }
 
-  public async find(customer: UserDto, query: FindOrdersDto) {
-    const { withUserFilter, ...rest } = query;
+  public async find(query: FindOrdersDto) {
 
     return this.client.findMany({
       where: {
-        ...rest,
-        customer: {
-          ...(withUserFilter && { equals: JSON.stringify(customer) }),
-        },
+        ...query,
       },
     });
   }

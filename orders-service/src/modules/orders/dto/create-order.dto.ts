@@ -5,7 +5,7 @@ import { UserDto } from './user.dto';
 
 export class CreateOrderDto {
   @IsEnum(StateCode)
-  @ApiProperty()
+  @ApiProperty({ enum: StateCode })
   stateCode: StateCode;
 
   @IsObject()

@@ -4,6 +4,6 @@ import { StateCode } from '../enums/order-state.enum';
 
 export class UpdateOrderDto {
   @IsEnum(StateCode)
-  @ApiProperty()
+  @ApiProperty({ enum: StateCode })
   stateCode: StateCode;
 }

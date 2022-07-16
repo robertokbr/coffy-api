@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Query, Put, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, Put, Param, UseGuards } from '@nestjs/common';
 import { OrdersService } from '../services/orders.service';
 import { CreateOrderItemsDto } from '../dto/create-order-items.dto';
 import { FindOrdersDto } from '../dto/find-orders.dto';
@@ -13,12 +13,14 @@ import {
 } from '@nestjs/swagger';
 import { UserDto } from '../dto/user.dto';
 import { OrderDto } from '../dto/order.dto';
+import { JwtAuthGuard } from 'src/modules/common/guards/jwt-auth.guard';
 
 @ApiTags('orders')
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
+  @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOperation({
     summary: 'Create an order specifying item ids and amounts.',
@@ -33,13 +35,12 @@ export class OrdersController {
     @GetUser() user: UserDto,
   ): Promise<OrderDto> {
     return this.ordersService.create({
-      stateCode: StateCode.Waiting,
+      stateCode: StateCode.WAITING,
       customer: user,
       items,
     });
   }
 
-  @ApiBearerAuth()
   @ApiOperation({
     summary:
       'Get all order record or filter the result by order state code, id or created at params.',
@@ -50,11 +51,11 @@ export class OrdersController {
   @Get()
   async findAll(
     @Query() findOrderDto: FindOrdersDto,
-    @GetUser() user: UserDto,
   ): Promise<OrderDto[]> {
-    return this.ordersService.findAll(user, findOrderDto);
+    return this.ordersService.findAll(findOrderDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOperation({
     summary: 'Update an order state.',

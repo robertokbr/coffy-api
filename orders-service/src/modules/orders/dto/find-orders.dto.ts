@@ -15,13 +15,8 @@ export class FindOrdersDto {
   id?: number;
 
   @IsOptional()
-  @IsBoolean()
-  @ApiProperty({ required: false })
-  withUserFilter?: boolean;
-
-  @IsOptional()
   @IsEnum(StateCode)
-  @ApiProperty({ required: false })
+  @ApiProperty({ required: false, enum: StateCode })
   stateCode?: StateCode;
 
   @IsOptional()

@@ -4,8 +4,9 @@ import { StateCode } from '../enums/order-state.enum';
 import { OrderItemsDto } from './order-items.dto';
 import { UserDto } from './user.dto';
 
-interface OrderEntity extends Omit<OrderDto, 'customer'> {
+interface OrderEntity extends Omit<OrderDto, 'customer' | 'stateCode'> {
   customer: any;
+  stateCode: any;
 }
 
 export class OrderDto {
@@ -18,7 +19,7 @@ export class OrderDto {
   customer: UserDto;
 
   @IsEnum(StateCode)
-  @ApiProperty()
+  @ApiProperty({ enum: StateCode })
   stateCode: StateCode;
 
   @IsArray()
@@ -32,8 +33,12 @@ export class OrderDto {
   static fromEntity(data: OrderEntity) {
     const { customer, ...dto } = data;
 
+    const serializedCustomer = typeof customer === 'string' 
+      ? JSON.parse(customer.valueOf()) 
+      : customer.valueOf();
+    
     return Object.assign(new OrderDto(), {
-      customer: customer.valueOf(),
+      customer: serializedCustomer,
       ...dto,
     });
   }
