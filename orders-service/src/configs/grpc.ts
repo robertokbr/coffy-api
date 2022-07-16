@@ -7,7 +7,7 @@ interface IgRPCConfigs {
 
 export const grpcConfigs = {
   authService: {
-    name: 'AuthServiceProvider',
+    name: 'AuthModuleProvider',
     transport: Transport.GRPC,
     options: {
       url: process.env.AUTH_SERVICE_PROVIDER_URL,

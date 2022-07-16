@@ -7,7 +7,7 @@ describe('SessionsController', () => {
 
   const mockTime = Date.now().toString();
 
-  const mockAuthServiceModule = {
+  const mockAuthModuleProvider = {
     getService: (_token) => ({
       createSession: (_createSessionDto) => new Observable((sub) => {
         sub.next({
@@ -23,8 +23,8 @@ describe('SessionsController', () => {
       controllers: [SessionsController],
       providers: [
         {
-          provide: 'AuthServiceModule',
-          useValue: mockAuthServiceModule,
+          provide: 'AuthModuleProvider',
+          useValue: mockAuthModuleProvider,
         }
       ]
     }).compile();
