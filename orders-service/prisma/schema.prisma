@@ -10,13 +10,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum OrderState {
+  WAITING
+  PREPARING
+  CANCELED
+  DONE
+}
+
 model Orders {
   id         Int           @id @default(autoincrement())
   customer   Json
-  stateCode  Int
+  stateCode  OrderState    @default(WAITING)
   createdAt  DateTime      @default(now())
   items      OrderItems[]
-  orderState OrderStates?  @relation(fields: [stateCode], references: [code])
 }
 
 model Collections {
@@ -55,10 +61,4 @@ model OrderItems {
   isValid Boolean  @default(true)
   item    Items?   @relation(fields: [itemId], references: [id])
   order   Orders?  @relation(fields: [orderId], references: [id])
-}
-
-model OrderStates {
-  code        Int     @id
-  description String
-  orders      Orders[]
 }
