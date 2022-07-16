@@ -1,9 +1,11 @@
 # Coffy Backend
-This is the coffy mobile app Backend repository. It has been made using Nestjs and grpc-js to create microservices and the API gateway.
+This is the coffy mobile app Backend repository. It has been made using Nestjs and grpc-js to create its microservices and its API gateway.
 
 ## Summary
 - [Orders Service](#user-content-orders-service)
 - [Auth Service](#user-content-auth-service)
+
+## Setup
 
 ---
 
@@ -12,9 +14,6 @@ Orders service is a Nest.JS API responsible for handle orders comming from the m
 
 ### 🚗 How to run 
 ```bash
-  # database
-  docker-compose up -d
-
   # enter the path
   cd orders-service
   
@@ -77,6 +76,9 @@ VScode proto-3 to.
   
   # download deps
   npm install
+
+  # init database
+  npm run migration:run
 
   # run 
   npm run dev
