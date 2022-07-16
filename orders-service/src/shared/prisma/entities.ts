@@ -1,1 +1,1 @@
-export { Items, Orders, OrderItems, OrderStates } from 'prisma/prisma-client';
+export { Items, Orders, OrderItems, OrderState } from 'prisma/prisma-client';

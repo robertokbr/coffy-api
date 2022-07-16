@@ -1,10 +1,9 @@
 import { PrismaClient } from '.prisma/client';
 import ItemsSeed from './items.seed';
-import OrderStateSeed from './order-state.seed';
 
 const client = new PrismaClient();
 
-const seeds = [OrderStateSeed, ItemsSeed];
+const seeds = [ItemsSeed];
 
 seeds.reduce(async (promise, seed) => {
   await promise;
