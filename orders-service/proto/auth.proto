@@ -5,7 +5,6 @@ package Auth;
 service AuthService {
   rpc createPasscode (Void) returns (PasscodeResponse);
   rpc createSession (CreateSessionRequest) returns (JWTResponse);
-  rpc updateSession (UpdateSessionRequest) returns (JWTResponse);
   rpc getSessionPayload (GetSessionPayloadRequest) returns (PayloadResponse);
 }
 
@@ -16,11 +15,6 @@ message Void {}
 message CreateSessionRequest {
   string code = 1;
   string name = 2;
-}
-
-message UpdateSessionRequest {
-  string jwt = 1;
-  string code = 2;
 }
 
 message GetSessionPayloadRequest {
